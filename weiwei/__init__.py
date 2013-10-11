@@ -4,6 +4,6 @@ from weiwei.db import initdb
 from weiwei.matching import matching
 
 
-def main(grobal_conf, root, **settings):
+def main(global_conf, root, **settings):
     initdb(settings)
     return make_wsgi_app(matching)
