@@ -10,6 +10,9 @@ points = {
     "paste.app_factory": [
         "main=weiwei:main",
     ],
+    "gearbox.commands": [
+        "shell=weiwei.commands:ShellCommand",
+    ]
 }
 
 
