@@ -31,6 +31,7 @@ setup(
         'gearbox==0.0.2',
         'webob==1.2.3',
         'sqlalchemy==0.8.2',
+        'repoze.who==2.2',
         'deform==2.0a1',
         'zope.sqlalchemy==0.7.3'
     ],

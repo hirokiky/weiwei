@@ -8,12 +8,7 @@ from weiwei.web import views as web_views
 
 @wsgify(RequestClass=Request)
 def login_dispatch(request):
-    return
-
-
-@wsgify(RequestClass=Request)
-def logout_dispatch(request):
-    return
+    return web_views.login_view(request)
 
 
 @wsgify(RequestClass=Request)

@@ -48,12 +48,11 @@ def page_post_view(request, page):
 
 
 def login_view(request):
-    raise NotImplemented
-
-
-def login_post_view(request):
-    raise NotImplemented
-
-
-def logout_view(request):
-    raise NotImplemented
+    if request.remote_user:
+        return Response(
+            status_code=302,
+            location=request.matching.reverse('page',
+                                              page_title='')
+        )
+    else:
+        return Response(status_code=401)
