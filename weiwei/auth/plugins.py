@@ -1,4 +1,4 @@
-from repoze.who.interfaces import IIdentifier, IAuthenticator, IChallengeDecider
+from repoze.who.interfaces import IAuthenticator
 
 from zope.interface import implementer
 
