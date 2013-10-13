@@ -20,7 +20,7 @@ points = {
 setup(
     name='weiwei',
     version='0.0',
-    license='GNU GPL v2',
+    license='GPLv3+',
     packages=find_packages(),
     url='https://github.com/hirokiky/weiwei/',
     author='hirokiky',
