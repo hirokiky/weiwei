@@ -10,7 +10,7 @@ class CreateUserCommand(LoadAppCommand):
         self.loadapp(parsed_args)
 
         session = Session()
-        roll = Roll(name='test')
+        roll = Roll(name='editor')
         user = User(name='test', password='test', roll=roll)
         session.add(roll)
         session.add(user)
