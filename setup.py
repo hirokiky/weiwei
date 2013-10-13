@@ -11,7 +11,7 @@ points = {
         "main=weiwei:main",
     ],
     "gearbox.commands": [
-        "shell=weiwei.commands:ShellCommand",
+        "shell=weiwei.commands.shell:ShellCommand",
     ]
 }
 
