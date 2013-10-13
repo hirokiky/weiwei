@@ -1,10 +1,22 @@
 import sqlalchemy as sa
+from sqlalchemy.orm import (
+    scoped_session,
+    sessionmaker,
+)
+from zope.sqlalchemy import ZopeTransactionExtension
 
-from weiwei.web.models import Base, Session
+Session = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
 
 
 def initdb(config):
+    def _init(engine, base):
+        base.metadata.bind = engine
+        base.metadata.create_all()
+
     engine = sa.engine_from_config(config, 'sqlalchemy.')
     Session.configure(bind=engine)
-    Base.metadata.bind = engine
-    Base.metadata.create_all()
+
+    from weiwei.auth import models as auth_models
+    from weiwei.web import models as web_models
+    _init(engine, auth_models.Base)
+    _init(engine, web_models.Base)
