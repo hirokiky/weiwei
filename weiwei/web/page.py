@@ -9,6 +9,5 @@ def insert_or_update_page(page, page_title, page_text):
                          page_text))
         transaction.commit()
     else:
-        page.title = page_title
         page.text = page_text
     return page

@@ -10,22 +10,22 @@ def page_view(request, page):
 
 
 def page_edit_view(request, page, page_title):
-    form = deform.Form(web_schema.Page(), buttons=('submit',))
+    form = deform.Form(web_schema.PageText(), buttons=('submit',))
     if page:
-        appstruct = dict(title=page.title,
-                         text=page.text)
+        appstruct = dict(text=page.text)
     else:
-        appstruct = dict(title=page_title)
+        appstruct = dict()
     form = form.render(appstruct)
-    return '{}'.format(form)
+    return 'Title:{page_title}{form}'.format(page_title=page_title,
+                                        form=form)
 
 
 def page_not_found_view(requsest):
     return '<a href="?edit">edit</a>'
 
 
-def page_post_view(request, page):
-    form = deform.Form(web_schema.Page(), buttons=('submit',))
+def page_post_view(request, page, page_title):
+    form = deform.Form(web_schema.PageText(), buttons=('submit',))
     controls = request.POST.items()
     try:
         appstruct = form.validate(controls)
@@ -34,7 +34,7 @@ def page_post_view(request, page):
 
     web_page.insert_or_update_page(
         page,
-        appstruct['title'],
+        page_title,
         appstruct['text'],
     )
 
@@ -42,7 +42,7 @@ def page_post_view(request, page):
         status_code=302,
         location=request.matching.reverse(
             'page',
-            page_title=appstruct['title']
+            page_title=page_title,
         )
     )
 
