@@ -16,8 +16,10 @@ def page_edit_view(request, page, page_title):
     else:
         appstruct = dict()
     form = form.render(appstruct)
-    return 'Title:{page_title}{form}'.format(page_title=page_title,
-                                        form=form)
+    return 'Title:{page_title}{form}'.format(
+        page_title=page_title,
+        form=form
+    )
 
 
 def page_not_found_view(requsest):
