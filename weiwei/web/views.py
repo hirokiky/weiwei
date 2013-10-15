@@ -43,7 +43,7 @@ def page_post_view(request, page, page_title):
     return Response(
         status_code=302,
         location=request.matching.reverse(
-            'page',
+            'web_page',
             page_title=page_title,
         )
     )
@@ -53,7 +53,7 @@ def login_view(request):
     if request.remote_user:
         return Response(
             status_code=302,
-            location=request.matching.reverse('page',
+            location=request.matching.reverse('web_page',
                                               page_title='')
         )
     else:
