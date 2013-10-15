@@ -28,7 +28,7 @@ setup(
     description='A reader-friendly Wiki engine.',
     long_description=README + '\n' + CHANGES,
     install_requires=[
-        'matcha==0.2',
+        'matcha==0.3',
         'gearbox==0.0.2',
         'webob==1.2.3',
         'sqlalchemy==0.8.2',
