@@ -4,7 +4,11 @@ from zope.interface.exceptions import BrokenImplementation
 from weiwei.interfaces import IHasher
 
 
-hash_api = None
+hasher = None
+
+
+def get_hasher():
+    return hasher
 
 
 def roll_validator_factory(*roll_names):
@@ -17,9 +21,10 @@ def roll_validator_factory(*roll_names):
 
 
 def make_hashed(raw_password):
-    if hash_api:
+    hasher = get_hasher()
+    if hasher:
         raw_password = raw_password.encode('utf-8')
-        return hash_api.encode(raw_password)
+        return hasher.encode(raw_password)
     else:
         raise NotImplementedError
 
@@ -28,7 +33,7 @@ def setup_hasher(hasher_name):
     hasher_class = EntryPoint.parse('hasher=%s' % hasher_name).load(False)
     if not IHasher.implementedBy(hasher_class):
         raise BrokenImplementation
-    hasher = hasher_class()
+    _hasher = hasher_class()
 
-    global hash_api
-    hash_api = hasher
+    global hasher
+    hasher = _hasher
