@@ -3,8 +3,10 @@
         <a href="?edit" class="btn btn-default glyphicon glyphicon-edit"></a>
     </py:block>
     <py:block name="title">$page.title</py:block>
+
+    <py:block name="page_header">$page.title</py:block>
     <py:block name="content">
-        <h1>$page.title</h1>
+        ${parent_block()}
         ${literal(page.markuped_text)}
     </py:block>
 </py:extends>

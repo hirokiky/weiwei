@@ -1,7 +1,8 @@
 <py:extends href="weiwei.web.templates.base">
     <py:block name="title">not found</py:block>
+    <py:block name="page_header">not found</py:block>
     <py:block name="content">
-        <h1>not found</h1>
+        ${parent_block()}
         <a href="?edit">edit</a>
     </py:block>
 </py:extends>

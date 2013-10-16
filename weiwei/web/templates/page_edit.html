@@ -1,7 +1,8 @@
 <py:extends href="weiwei.web.templates.base">
     <py:block name="title">$page_title</py:block>
+    <py:block name="page_header">$page_title</py:block>
     <py:block name="content">
-        <h1>$page_title</h1>
+        ${parent_block()}
         ${literal(form)}
     </py:block>
 </py:extends>
