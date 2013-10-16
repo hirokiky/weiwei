@@ -4,7 +4,7 @@ from deform.widget import TextAreaWidget
 
 class PageText(colander.MappingSchema):
     text = colander.SchemaNode(colander.String(),
-                               widget=TextAreaWidget())
+                               widget=TextAreaWidget(css_class='markup'))
 
 
 class PageTitle(colander.MappingSchema):

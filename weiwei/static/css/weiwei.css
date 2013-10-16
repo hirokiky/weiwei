@@ -1,0 +1,5 @@
+/* Make textarea for inputing markup more writable */
+textarea.markup {
+    height: 350px;
+    font-family: monospace;
+}
