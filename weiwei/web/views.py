@@ -1,14 +1,17 @@
 import deform
 from webob import Response
 
+from weiwei.template.renderer import using_template
 from weiwei.web import schema as web_schema
 from weiwei.web import page as web_page
 
 
+@using_template('weiwei.web.templates.page')
 def page_view(request, page):
-    return "{page.title}: {page.text}".format(page=page)
+    return dict(page=page)
 
 
+@using_template('weiwei.web.templates.page_edit')
 def page_edit_view(request, page, page_title):
     form = deform.Form(web_schema.PageText(), buttons=('submit',))
     if page:
@@ -16,23 +19,24 @@ def page_edit_view(request, page, page_title):
     else:
         appstruct = dict()
     form = form.render(appstruct)
-    return 'Title:{page_title}{form}'.format(
-        page_title=page_title,
-        form=form
-    )
+    return dict(page_title=page_title,
+                form=form)
 
 
+@using_template('weiwei.web.templates.page_not_found')
 def page_not_found_view(requsest):
-    return '<a href="?edit">edit</a>'
+    return {}
 
 
+@using_template('weiwei.web.templates.page_edit')
 def page_post_view(request, page, page_title):
     form = deform.Form(web_schema.PageText(), buttons=('submit',))
     controls = request.POST.items()
     try:
         appstruct = form.validate(controls)
     except deform.ValidationFailure as e:
-        return '{}'.format(e.render())
+        return dict(page_title=page_title,
+                    form=e.render())
 
     web_page.insert_or_update_page(
         page,
