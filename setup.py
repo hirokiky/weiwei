@@ -34,6 +34,7 @@ setup(
         'sqlalchemy==0.8.2',
         'repoze.who==2.2',
         'deform==2.0a1',
+        'docutils==0.11',
         'zope.sqlalchemy==0.7.3'
     ],
     entry_points=points,

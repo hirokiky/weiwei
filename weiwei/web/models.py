@@ -2,6 +2,7 @@ import sqlalchemy as sa
 from sqlalchemy.ext.declarative import declarative_base
 
 from weiwei.db import Session
+from weiwei.web.markup import rst_renderer
 
 Base = declarative_base()
 
@@ -21,3 +22,7 @@ class Page(Base):
 
     def __repr__(self):
         return "<Page {0}>".format(self.title)
+
+    @property
+    def markuped_text(self):
+        return rst_renderer(self.text)

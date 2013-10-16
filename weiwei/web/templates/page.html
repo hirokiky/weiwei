@@ -2,6 +2,6 @@
     <py:block name="title">$page.title</py:block>
     <py:block name="content">
         <h1>$page.title</h1>
-        <p>$page.text</p>
+        <p>${literal(page.markuped_text)}</p>
     </py:block>
 </py:extends>
