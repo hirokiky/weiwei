@@ -1,9 +1,10 @@
 import deform
 from webob import Response
 
-from weiwei.template.renderer import using_template
+from weiwei.auth import roll_required
 from weiwei.web import schema as web_schema
 from weiwei.web import page as web_page
+from weiwei.template.renderer import using_template
 
 
 @using_template('weiwei.web.templates.page')
@@ -11,6 +12,7 @@ def page_view(request, page):
     return dict(page=page)
 
 
+@roll_required('editor')
 @using_template('weiwei.web.templates.page_edit')
 def page_edit_view(request, page, page_title):
     form = deform.Form(web_schema.PageText(), buttons=('submit',))
@@ -28,6 +30,7 @@ def page_not_found_view(requsest):
     return {}
 
 
+@roll_required('editor')
 @using_template('weiwei.web.templates.page_edit')
 def page_post_view(request, page, page_title):
     form = deform.Form(web_schema.PageText(), buttons=('submit',))

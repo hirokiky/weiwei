@@ -2,7 +2,6 @@ import colander
 from webob import Response
 from webob.dec import wsgify
 
-from weiwei.auth import roll_validator_factory
 from weiwei.request import Request
 from weiwei.web import schema as web_schema
 from weiwei.web import models as web_models
@@ -34,11 +33,7 @@ def page_dispatch(request):
         else:
             return web_views.page_not_found_view(request)
     elif request.method == 'POST':
-        if roll_validator_factory('editor')(request.remote_user):
-            return web_views.page_post_view(request, page, page_title)
-        else:
-            return Response(status_code=401)
-
+        return web_views.page_post_view(request, page, page_title)
     else:
         return Response(
             status_code=405,
