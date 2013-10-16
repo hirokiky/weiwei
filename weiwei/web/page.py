@@ -7,7 +7,7 @@ def insert_or_update_page(page, page_title, page_text):
         session = Session()
         session.add(Page(page_title,
                          page_text))
-        transaction.commit()
     else:
         page.text = page_text
+    transaction.commit()
     return page
