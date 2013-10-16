@@ -3,3 +3,11 @@ textarea.markup {
     height: 350px;
     font-family: monospace;
 }
+
+
+div.editor_panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+}

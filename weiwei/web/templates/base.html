@@ -9,6 +9,11 @@
 </head>
 <body>
 <div class="container">
+    <py:if test="request.remote_user">
+        <div class="btn-group editor_panel">
+            <py:block name="editor_panel" />
+        </div>
+    </py:if>
     <py:block name="content" />
 </div>
 </body>
