@@ -28,6 +28,7 @@ setup(
     description='A reader-friendly Wiki engine.',
     long_description=README + '\n' + CHANGES,
     install_requires=[
+        'kajiki==0.4.4',
         'matcha==0.3',
         'gearbox==0.0.2',
         'webob==1.2.3',
