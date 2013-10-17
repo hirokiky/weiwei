@@ -8,20 +8,20 @@ from weiwei.template.renderer import using_template
 
 
 @using_template('weiwei.web.templates.page')
-def page_view(request, page):
-    return dict(page=page)
+def page_view(request):
+    return dict(page=request.page)
 
 
 @roll_required('editor')
 @using_template('weiwei.web.templates.page_edit')
-def page_edit_view(request, page, page_title):
+def page_edit_view(request):
     form = deform.Form(web_schema.PageText(), buttons=('submit',))
-    if page:
-        appstruct = dict(text=page.text)
+    if request.page:
+        appstruct = dict(text=request.page.text)
     else:
         appstruct = dict()
     form = form.render(appstruct)
-    return dict(page_title=page_title,
+    return dict(page_title=request.page_title,
                 form=form)
 
 
@@ -32,18 +32,18 @@ def page_not_found_view(requsest):
 
 @roll_required('editor')
 @using_template('weiwei.web.templates.page_edit')
-def page_post_view(request, page, page_title):
+def page_post_view(request):
     form = deform.Form(web_schema.PageText(), buttons=('submit',))
     controls = request.POST.items()
     try:
         appstruct = form.validate(controls)
     except deform.ValidationFailure as e:
-        return dict(page_title=page_title,
+        return dict(page_title=request.page_title,
                     form=e.render())
 
     web_page.insert_or_update_page(
-        page,
-        page_title,
+        request.page,
+        request.page_title,
         appstruct['text'],
     )
 
@@ -51,7 +51,7 @@ def page_post_view(request, page, page_title):
         status_code=302,
         location=request.matching.reverse(
             'web_page',
-            page_title=page_title,
+            page_title=request.page_title,
         )
     )
 
