@@ -11,3 +11,11 @@ div.editor_panel {
     right: 0;
     margin: 10px;
 }
+
+div.anonymous_panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    opacity: 0.5;
+}
