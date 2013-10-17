@@ -3,6 +3,6 @@
     <py:block name="page_header">not found</py:block>
     <py:block name="content">
         ${parent_block()}
-        <a href="?edit">edit</a>
+        <py:if test="request.remote_user"><a href="?edit">edit</a></py:if>
     </py:block>
 </py:extends>
