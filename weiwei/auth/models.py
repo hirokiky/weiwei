@@ -1,11 +1,8 @@
 import sqlalchemy as sa
 from sqlalchemy.orm import relationship
-from sqlalchemy.ext.declarative import declarative_base
 
 from weiwei.auth import make_hashed
-from weiwei.db import Session
-
-Base = declarative_base()
+from weiwei.db import Session, Base
 
 
 class Roll(Base):

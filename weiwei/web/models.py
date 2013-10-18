@@ -1,10 +1,7 @@
 import sqlalchemy as sa
-from sqlalchemy.ext.declarative import declarative_base
 
-from weiwei.db import Session
+from weiwei.db import Session, Base
 from weiwei.web.markup import rst_renderer
-
-Base = declarative_base()
 
 
 class Page(Base):

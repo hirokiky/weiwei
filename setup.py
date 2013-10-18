@@ -12,7 +12,7 @@ points = {
     ],
     "gearbox.commands": [
         "shell=weiwei.commands.shell:ShellCommand",
-        "createuser=weiwei.commands.createuser:CreateUserCommand"
+        "initializedb=weiwei.commands.initializedb:InitializeDBCommand",
     ]
 }
 
