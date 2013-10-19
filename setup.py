@@ -39,4 +39,5 @@ setup(
         'zope.sqlalchemy==0.7.3'
     ],
     entry_points=points,
+    tests_require=['pytest'],
 )
