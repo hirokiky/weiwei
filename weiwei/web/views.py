@@ -2,18 +2,23 @@ import deform
 from webob import Response
 
 from weiwei.auth import roll_required
+from weiwei.bundler import bundle_decorators
 from weiwei.web import schema as web_schema
 from weiwei.web import page as web_page
 from weiwei.template.renderer import using_template
 
 
-@using_template('weiwei.web.templates.page')
+@bundle_decorators(
+    using_template('weiwei.web.templates.page'),
+)
 def page_view(request):
     return dict(page=request.page)
 
 
-@roll_required('editor')
-@using_template('weiwei.web.templates.page_edit')
+@bundle_decorators(
+    roll_required('editor'),
+    using_template('weiwei.web.templates.page_edit'),
+)
 def page_edit_view(request):
     form = deform.Form(web_schema.PageText(), buttons=('submit',))
     if request.page:
@@ -25,13 +30,17 @@ def page_edit_view(request):
                 form=form)
 
 
-@using_template('weiwei.web.templates.page_not_found')
+@bundle_decorators(
+    using_template('weiwei.web.templates.page_not_found'),
+)
 def page_not_found_view(requsest):
     return {}
 
 
-@roll_required('editor')
-@using_template('weiwei.web.templates.page_edit')
+@bundle_decorators(
+    roll_required('editor'),
+    using_template('weiwei.web.templates.page_edit'),
+)
 def page_post_view(request):
     form = deform.Form(web_schema.PageText(), buttons=('submit',))
     controls = request.POST.items()

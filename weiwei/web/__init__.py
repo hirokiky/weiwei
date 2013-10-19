@@ -1,6 +1,7 @@
 from webob import Response
 from webob.dec import wsgify
 
+from weiwei.bundler import bundle_decorators
 from weiwei.request import Request
 from weiwei.web import schema as web_schema
 from weiwei.web import models as web_models
@@ -8,13 +9,17 @@ from weiwei.web import views as web_views
 from weiwei.web.page import apply_page_resource
 
 
-@wsgify(RequestClass=Request)
+@bundle_decorators(
+    wsgify(RequestClass=Request),
+)
 def login_dispatch(request):
     return web_views.login_view(request)
 
 
-@wsgify(RequestClass=Request)
-@apply_page_resource
+@bundle_decorators(
+    wsgify(RequestClass=Request),
+    apply_page_resource,
+)
 def page_dispatch(request):
     if request.method == 'GET':
         if request.GET.get('edit') is not None:
