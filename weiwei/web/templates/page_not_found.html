@@ -1,8 +1,0 @@
-<py:extends href="weiwei.web.templates.base">
-    <py:block name="title">not found</py:block>
-    <py:block name="page_header">not found</py:block>
-    <py:block name="content">
-        ${parent_block()}
-        <py:if test="request.remote_user"><a href="?edit">edit</a></py:if>
-    </py:block>
-</py:extends>
