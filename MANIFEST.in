@@ -1,1 +1,2 @@
-include CHANGES.txt
+include *.txt *.ini *.cfg *.rst
+recursive-include weiwei *.ico *.png *.css *.gif *.jpg *.pt *.txt *.mak *.mako *.js *.html *.xml
